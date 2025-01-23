@@ -871,6 +871,7 @@ function showNotification() {
 
     function loadTableData() {
     const savedData = localStorage.getItem('tableData');
+    console.log('Data yang dimuat dari local storage:', savedData);
     const tbody = document.querySelector('#document-table tbody');
     tbody.innerHTML = ''; 
 
