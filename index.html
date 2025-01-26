@@ -248,11 +248,11 @@
             <h2>Checklist Kelengkapan Dokumen Usul Penetapan NIP CPNS 2024 - DRH SSCASN</h2>
             <div class="filter-section">
                 <label for="start-date"><strong>Start Date:</strong></label>
-                <input type="date" id="start-date" onchange="filterTable()" style="width: 30%; margin: 0 10px;">
+                <input type="date" id="start-date" onchange="filterTable()" style="width: 50%; margin: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 4px;">
                 <label for="end-date"><strong>End Date:</strong></label>
-                <input type="date" id="end-date" onchange="filterTable()" style="width: 30%; margin: 0 10px;">
+                <input type="date" id="end-date" onchange="filterTable()" style="width: 50%; margin: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 4px;">
                 <label for="status-filter"><strong>Status:</strong></label>
-                <select id="status-filter" onchange="filterTable()" style="width: 30%; margin: 0 10px;">
+                <select id="status-filter" onchange="filterTable()" style="width: 50%; margin: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 4px;">
                     <option value="">Semua</option>
                     <option value="belum diunggah">Belum diproses</option>
                     <option value="sedang diproses">Sedang diproses</option>
@@ -264,12 +264,13 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th style="width: 30%;">Document Item</th>
-                        <th style="width: 10%;">Start Date</th>
-                        <th style="width: 10%;">End Date</th>
-                        <th style="width: 15%;">Status</th>
-                        <th style="width: 15%;">Document Link</th>
-                        <th style="width: 10%;">Aksi</th>
+                        <th style="width: 6%;">Document Item</th>
+                        <th style="width: 5%;">Start Date</th>
+                        <th style="width: 5%;">End Date</th>
+                        <th style="width: 16%;">Status</th>
+                        <th style="width: 17%;">Document Link</th>
+                        <th style="width: 6%;" class="checkbox-cell">Upload SSCASN?</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -289,6 +290,7 @@
                             <input type="file" class="upload-input" accept=".jpg, .jpeg, .png" data-max-size="500" onchange="uploadFile(this); saveTableData();">
                             <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                         </td>
+                        <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                         <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                     </tr>
                     <tr>
@@ -307,24 +309,7 @@
                             <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
                             <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                         </td>
-                        <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td class="item-cell">Transkrip Nilai Asli yang digunakan saat melamar CPNS 2024</td>
-                        <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                        <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                        <td>
-                            <select class="status-dropdown" onchange="saveTableData()">
-                                <option value="belum diunggah">Belum diproses</option>
-                                <option value="sedang diproses">Sedang diproses</option>
-                                <option value="sudah diunggah">Sudah diunggah</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                            <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                        </td>
+                        <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                         <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                     </tr>
                     <!-- Tambahkan baris lainnya sesuai kebutuhan -->
@@ -332,206 +317,65 @@
             </table>
 
             <div class="button-container">
-                <button id="add-row" onclick="addRow()">Tambah Baris</button>
-                <button id="print-button" onclick="printTable()">Cetak DRH</button>
-            </div>
-
-            <footer class="footer">
-                <p>&copy; 2024 Checklist Dokumen DRH (Nicholas). All Rights Reserved.</p>
-            </footer>
-
-            <div class="button-container">
-                <button type="submit" disabled>Ajukan Timeline</button>
+                <button type="button" id="add-row" onclick="addRow()">Tambah Baris</button>
+                <button type="button" id="print-button" onclick="printTable()">Cetak DRH</button>
             </div>
         </div>
     </form>
 
-    <div class="section" style="text-align: center;">
-        <h2 id="timelineTitle">Timeline Dokumen DRH Peserta</h2>
-        <form id="ganttForm" style="display: inline-block; text-align: left;">
-            <label for="id">Masukkan ID Anda:</label>
-            <input type="number" name="id" id="id" required>
-            <input type="submit" value="Tampilkan" onclick="showTimeline();">
-        </form>
-
-        <div id="ganttChartContainer"></div>
-        <div id="message"></div> 
-    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Checklist Dokumen DRH (Nicholas). All Rights Reserved.</p>
+    </footer>
 
     <script>
-        function hideNotification() {
-            const notification = document.getElementById('notification');
-            notification.style.display = 'none'; 
-        }
+        function uploadFile(input) {
+            const file = input.files[0];
+            const link = input.nextElementSibling; 
+            const maxSizeKB = parseInt(input.getAttribute('data-max-size')); 
+            const maxSizeBytes = maxSizeKB * 1024; 
 
-        function submitForm() {
-            // Logika pengajuan form
-            localStorage.setItem('submissionStatus', 'submitted');
-            hideNotification(); 
-            return false; 
-        }
+            if (file) {
+                if (file.size > maxSizeBytes) {
+                    alert(`Ukuran file melebihi batas maksimum yang diizinkan (${maxSizeKB} KB).`);
+                    input.value = ''; 
+                    link.style.display = 'none'; 
+                    return;
+                }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('submit-button').disabled = true; 
-            hideNotification(); 
-        });
+                const formData = new FormData();
+                formData.append('file', file);
 
-        function showTimeline() {
-            var idPeserta = document.getElementById('id').value;
-            var namaLengkap = document.getElementById('nama').value;
-
-            document.getElementById('timelineTitle').innerText = 'Timeline Dokumen DRH ' + namaLengkap;
-
-            return false; 
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('message') && urlParams.get('message') === 'success') {
-                document.getElementById('notification').style.display = 'block'; 
-                setTimeout(() => {
-                    document.getElementById('notification').style.display = 'none'; 
-                    urlParams.delete('message'); 
-                    window.history.replaceState({}, document.title, window.location.pathname); 
-                }, 5000);
-            }
-
-            if (localStorage.getItem('submissionStatus') === 'submitted') {
-                document.getElementById('notification').style.display = 'block'; 
-                setTimeout(() => {
-                    document.getElementById('notification').style.display = 'none'; 
-                    local Storage.removeItem('submissionStatus'); 
-                }, 5000);
-            }
-        });
-
-        function generateRandomLetters(length) {
-            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-            let result = '';
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * letters.length); 
-                result += letters[randomIndex]; 
-            }
-            return result; 
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('ganttForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                showTimeline();
-                
-                var idPeserta = document.getElementById('id').value;
-                var randomLetters = generateRandomLetters(3);
-                var gambarGantt = "gant_chart_id=" + idPeserta + ".png"; 
-
-                console.log("ID Peserta:", idPeserta);
-                console.log("Gambar Gantt URL:", gambarGantt);
-
-                var container = document.getElementById('ganttChartContainer');
-                container.innerHTML = ''; 
-
-                var img = new Image();
-                img.src = gambarGantt;
-                img.alt = "Gantt Chart";
-
-                img.onload = function() {
-                    container.appendChild(img); 
-                    document.getElementById('message').innerHTML = 'ID Peserta: ' + idPeserta + ' ' + randomLetters; 
-                    localStorage.setItem('gambarGantt', gambarGantt);
-                };
-
-                img.onerror = function() {
-                    document.getElementById('message').innerHTML = 'Timeline Anda tidak ditemukan untuk ID: ' + idPeserta + '. Masukkan ID sesuai yang diberikan oleh Administrator. Jika lupa ID Anda, silakan hubungi Administrator!'; 
-                };
-            });
-        });
-
-        function loadChartImage() {
-            const gambarGantt = localStorage.getItem('gambarGantt');
-            if (gambarGantt) {
-                const imgElement = document.createElement('img');
-                imgElement.src = gambarGantt;
-                imgElement.alt = "Gantt Chart";
-
-                const container = document.getElementById('ganttChartContainer');
-                container.innerHTML = ''; 
-                container.appendChild(imgElement); 
-            }
-        }
-
-        function loadInstansi() {
-            fetch('instansi.json')
+                fetch('upload.php', { 
+                    method: 'POST',
+                    body: formData
+                })
                 .then(response => response.json())
                 .then(data => {
-                    const instansiList = document.getElementById('instansi-list');
-                    data.forEach(instansi => {
-                        const option = document.createElement('option');
-                        option.value = instansi.nama; 
-                        instansiList.appendChild(option); 
-                    });
+                    if (data.success) {
+                        const fileURL = data.fileUrl; 
+                        link.href = fileURL; 
+                        link.textContent = file.name; 
+                        link.style.display = 'inline'; 
+
+                        const row = input.closest('tr');
+                        const rowIndex = Array.from(row.parentNode.children).indexOf(row);
+                        const tableData = JSON.parse(localStorage.getItem('tableData')) || [];
+                        if (!tableData[rowIndex]) {
+                            tableData[rowIndex] = {};
+                        }
+                        tableData[rowIndex].fileLink = fileURL; 
+                        localStorage.setItem('tableData', JSON.stringify(tableData));
+
+                        console.log(`File ${file.name} berhasil diunggah.`);
+                    } else {
+                        console.error('Gagal mengunggah file:', data.message);
+                    }
                 })
-                .catch(error => console.error('Error loading instansi:', error));
-        }
-
-        function showNotification() {
-            const notification = document.getElementById('notification');
-            notification.style.display = 'block'; 
-            setTimeout(() => {
-                notification.style.display = 'none'; 
-            }, 5000);
-        }
-
-        function saveTableData() {
-            const tableData = [];
-            const rows = document.querySelectorAll('#document-table tbody tr');
-
-            rows.forEach(row => {
-                const cells = row.getElementsByTagName('td');
-                const rowData = {
-                    item: cells[1].getElementsByTagName('textarea')[0].value,
-                    startDate: cells[2].getElementsByTagName('input')[0].value,
-                    endDate: cells[3].getElementsByTagName('input')[0].value,
-                    status: cells[4].getElementsByTagName('select')[0].value,
-                    fileLink: cells[5].getElementsByTagName('a')[0].href,
-                    uploaded: cells[6].getElementsByTagName('input')[0].checked
-                };
-                tableData.push(rowData);
-            });
-
-            console.log('Data yang akan disimpan:', JSON.stringify(tableData));
-            localStorage.setItem('tableData', JSON.stringify(tableData)); 
-        }
-
-        function loadTableData() {
-            const savedData = localStorage.getItem('tableData');
-            console.log('Data yang dimuat dari local storage:', savedData);
-            const tbody = document.querySelector('#document-table tbody');
-            tbody.innerHTML = ''; 
-
-            if (savedData) {
-                const tableData = JSON.parse(savedData);
-                tableData.forEach((data, index) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td class="item-cell"><textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()">${data.item}</textarea></td>
-                        <td><input type="date" class="date-input" value="${data.startDate}" onchange="saveTableData()"></td>
-                        <td><input type="date" class="date-input" value="${data.endDate }" onchange="saveTableData()"></td>
-                        <td>
-                            <select class="status-dropdown" onchange="saveTableData()">
-                                <option value="belum diunggah" ${data.status === 'belum diunggah' ? 'selected' : ''}>Belum diproses</option>
-                                <option value="sedang diproses" ${data.status === 'sedang diproses' ? 'selected' : ''}>Sedang diproses</option>
-                                <option value="sudah diunggah" ${data.status === 'sudah diunggah' ? 'selected' : ''}>Sudah diunggah</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                            <a href="${data.fileLink}" class="file-link" style="display:${data.fileLink ? 'inline' : 'none'};" target="_blank">Lihat File</a>
-                        </td>
-                        <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                    `;
-                    tbody.appendChild(row);
+                .catch(error => {
+                    console.error('Error:', error);
                 });
+            } else {
+                link.style.display = 'none'; 
             }
         }
 
@@ -556,6 +400,7 @@
                     <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
                     <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                 </td>
+                <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
             `;
 
@@ -569,17 +414,97 @@
             saveTableData(); 
         }
 
+        function saveTableData() {
+            const tableData = [];
+            const rows = document.querySelectorAll('#document-table tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+                const rowData = {
+                    item: cells[1].getElementsByTagName('textarea')[0].value,
+                    startDate: cells[2].getElementsByTagName('input')[0].value,
+                    endDate: cells[3].getElementsByTagName('input')[0].value,
+                    status: cells[4].getElementsByTagName('select')[0].value,
+                    fileLink: cells[5].getElementsByTagName('a')[0].href, 
+                    uploaded: cells[6].getElementsByTagName('input')[0].checked 
+                };
+                tableData.push(rowData);
+            });
+
+            localStorage.setItem('tableData', JSON.stringify(tableData)); 
+        }
+
+        function filterTable() {
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const statusFilter = document.getElementById('status-filter').value;
+
+            const table = document.getElementById('document-table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) { 
+                const cells = rows[i].getElementsByTagName('td');
+                const dateCellStart = cells[2].getElementsByTagName('input')[0].value;
+                const dateCellEnd = cells[3].getElementsByTagName('input')[0].value;
+                const statusCell = cells[4].getElementsByTagName('select')[0].value;
+
+                let showRow = true;
+
+                if (startDate && dateCellStart < startDate) {
+                    showRow = false;
+                }
+                if (endDate && dateCellEnd > endDate) {
+                    showRow = false;
+                }
+
+                if (statusFilter && statusCell !== statusFilter) {
+                    showRow = false;
+                }
+
+                rows[i].style.display = showRow ? '' : 'none'; 
+            }
+        }
+
         function printTable() {
             window.print(); 
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             loadTableData();
-            loadInstansi();
-            loadJabatan();
-            loadChartImage();
         });
-    </script>
 
+        function loadTableData() {
+            const savedData = localStorage.getItem('tableData');
+            const tbody = document.querySelector('#document-table tbody');
+            tbody.innerHTML = ''; 
+
+            if (savedData) {
+                const tableData = JSON.parse(savedData);
+                tableData.forEach((data, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td class="item-cell"><textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()">${data.item}</textarea></td>
+                        <td><input type="date" class="date-input" value="${data.startDate}" onchange="saveTableData()"></td>
+                        <td><input type="date" class="date-input" value="${data.endDate}" onchange="saveTableData()"></td>
+                        <td>
+                            <select class="status-dropdown" onchange="saveTableData()">
+                                <option value="belum diunggah" ${data.status === 'belum diunggah' ? 'selected' : ''}>Belum diproses</option>
+                                <option value="sedang diproses" ${data.status === 'sedang diproses' ? 'selected' : ''}>Sedang diproses</option>
+                                <option value="sudah diunggah" ${data.status === 'sudah diunggah' ? 'selected' : ''}>Sudah diunggah</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
+                            <a href="${data.fileLink}" class="file-link" style="display:${data.fileLink ? 'inline' : 'none'};" target="_blank">Lihat File</a>
+                        </td>
+                        <td class="checkbox-cell"><input type="checkbox" ${data.uploaded ? 'checked' : ''} onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                        <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+        }
+    </script>
 </body>
 </html>
