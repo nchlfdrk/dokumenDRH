@@ -738,7 +738,7 @@ function showNotification() {
         formData.append('file', file);
 
         fetch('upload.php', { 
-            method: 'POST',
+            method: '',
             body: formData
         })
         .then(response => response.json())
