@@ -488,6 +488,24 @@
     </div>
 
     <script>
+
+        function hideNotification() {
+            const notification = document.getElementById('notification');
+            notification.style.display = 'none'; 
+        }
+
+        // Fungsi untuk mengajukan timeline
+        function submitForm() {
+            // Logika pengajuan form
+            localStorage.setItem('submissionStatus', 'submitted');
+            hideNotification(); 
+            return false; 
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('submit-button').disabled = true; 
+            hideNotification(); 
+        });
    
    function showTimeline() {
             
