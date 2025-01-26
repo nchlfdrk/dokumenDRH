@@ -10,7 +10,6 @@
             font-size: 15.5px; 
         }
         body {
-            font-family: Arial, sans-serif;
             margin: 20px;
             padding: 20px;
             background-color: #f4f4f4;
@@ -25,29 +24,18 @@
             background: white;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex; 
-            flex-wrap: wrap; 
         }
-        .form-section label {
-            display: block;
-            margin-bottom: 5px;
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
-        .form-section input[type="text"],
-        .form-section select {
-            width: 97%;
+        .filter-section input,
+        .filter-section select {
+            width: 30%; 
             padding: 10px;
-            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            background-color: white;
-        }
-        .form-column {
-            flex: 31; 
-            min-width: 200px; 
-            margin-right: 100px; 
-        }
-        .form-column:last-child {
-            margin-right: 0; 
         }
         table {
             width: 100%;
@@ -66,97 +54,7 @@
             text-align: left; 
             width: 40%; 
         }
-        td:nth-child(5) { 
-            text-align: center; 
-        }
-        .checkbox-cell {
-            text-align: center;
-        }
-        .highlight {
-            background-color: #d4edda; 
-        }
-        .upload-input {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .status-dropdown {
-            width: 100%; 
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            text-align: center;
-            margin: 0 auto;
-            box-sizing: border-box;
-            background-color: white;
-        }
-        .file-link {
-            display: none; 
-            margin-top: 5px;
-            text-decoration: none;
-            color: blue;
-        }
-        .date-input {
-            width: 80%; 
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .filter-section {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .filter-section input,
-        .filter-section select {
-            width: 30%; 
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .footer {
-            text-align: center; 
-            margin-top: 10px; 
-            font-size: 14px; 
-            color: #333;
-            padding: 0px;
-            width: 100%;
-            position: relative;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        #message {
-            color: red; 
-        }
-        .section {
-            margin-top: 20px; 
-            padding: 10px;
-            border: 1px solid #ccc; 
-            border-radius: 5px; 
-            background-color: #f9f9f9; 
-        }
-        .notification {
-            background-color: #d4edda; 
-            color: #155724;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #c3e6cb; 
-            border-radius: 5px;
-            text-align: center; 
-            display: none; 
-        }
-        .item-input {
-            width: 100%; 
-            border: none; 
-            outline: none; 
-            font-size: inherit; 
-            text-align: left; 
-            background: transparent; 
-        }
-        delete-button {
+        .delete-button {
             background-color: red; 
             color: white; 
             border: none; 
@@ -166,767 +64,113 @@
         .delete-button:hover {
             background-color: #ffc9bb; 
         }
-
-         @media print {
-            th:nth-child(1), 
-            th:nth-child(3), 
-            th:nth-child(4), 
-            th:nth-child(5), 
-            th:nth-child(7), 
-            th:nth-child(8) { 
-                display: none;
-            }
-            td:nth-child(1),
-            td:nth-child(3), 
-            td:nth-child(4), 
-            td:nth-child(5), 
-            td:nth-child(7), 
-            td:nth-child(8) { 
-                display: none;
-            }
-             button, .footer, .website-title {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
 
     <h1>Formulir Dokumen DRH CPNS 2024</h1>
 
-    <div class="notification" id="notification" style="display: none;">
-    Permintaan timeline Anda berhasil dikirimkan dan akan segera diproses oleh Administrator dalam 2 x 24 jam!
-</div>
-
-  <form id="peserta-form" method="POST" action="ajukanTimeline.php" onsubmit="return submitForm();">  
-  <div class="form-section">
-    <div class="form-column">
-        <label for="nama">Nama Peserta:</label>
-        <input type="text" id="nama" name="nama" placeholder="Ketikkan nama peserta">
-
-        <label for="instansi">Instansi:</label>
-        <input type="text" id="instansi" name="instansi" placeholder="Ketikkan nama instansi" list="instansi-list">
-        <datalist id="instansi-list">
-            <!-- Opsi instansi akan diisi di sini -->
-        </datalist>
-
-        <label for="jabatan">Jabatan:</label>
-        <input type="text" id="jabatan" name="jabatan" placeholder="Ketikkan jabatan" list="jabatan-list">
-        <datalist id="jabatan-list">
-            <!-- Opsi jabatan akan diisi di sini -->
-        </datalist>
-    </div>
-    <div class="form-column">
-        <label for="lokasi">Lokasi Formasi:</label>
-        <input type="text" id="lokasi" name="lokasi" placeholder="Ketikkan lokasi formasi">
-
-        <label for="kode">Kode Kelulusan:</label>
-        <input type="text" id="kode" name="kode" placeholder="Ketikkan kode kelulusan" list="kode-list">
-        <datalist id="kode-list">
-            <option value="P/L">
-            <option value="P/L-U1">
-            <option value="P/L-U3">
-            <option value="P/L-E1">
-            <option value="P/L-E2">
-            <option value="P/L-E3">
-        </datalist>
-
-        <label for="jenis">Jenis Formasi:</label>
-        <input type="text" id="jenis" name="jenis" placeholder="Ketikkan jenis formasi" list="jenis-list">
-        <datalist id="jenis-list">
-            <option value="Umum">
-            <option value="Lulusan Terbaik (Cumlaude)">
-            <option value="Diaspora">
-            <option value="Penyandang Disabilitas">
-            <option value="Putra/Putri Kalimantan">
-            <option value="Putra/Putri Papua">
-            <option value="Putra/Putri Daerah Tertinggal">
-        </datalist>
-    </div>
-</div>
-
-    <div class="form-section">
-        <h2>Checklist Kelengkapan Dokumen Usul Penetapan NIP CPNS 2024 - DRH SSCASN</h2>
-        <div class="filter-section">
-            <label for="start-date"><strong>Start Date:</strong></label>
-            <input type="date" id="start-date" onchange="filterTable()" style="width: 50%; margin: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 4px;">
-            <label for="end-date"><strong>End Date:</strong></label>
-            <input type="date" id="end-date" onchange="filterTable()" style="width: 50%; margin: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 4px;">
-            <label for="status-filter"><strong>Status:</strong></label>
-            <select id="status-filter" onchange="filterTable()" style="width: 50%; margin: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 4px;">
-                <option value="">Semua</option>
-                <option value="belum diunggah">Belum diproses</option>
-                <option value="sedang diproses">Sedang diproses</option>
-                <option value="sudah diunggah">Sudah diunggah</option>
-            </select>
-        </div>
-
-        <form id="peserta-form" method="POST" action="ajukanTimeline.php" onsubmit="return submitForm();">
-
-        <table id="document-table" style="margin-top: 2px;">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th style="width: 6%;">Document Item</th>
-                    <th style="width: 5%;">Start Date</th>
-                    <th style="width: 5%;">End Date</th>
-                    <th style="width: 16%;">Status</th>
-                    <th style="width: 17%;">Document Link</th>
-                    <th style="width: 6%;" class="checkbox-cell">Upload SSCASN?</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="item-cell">Pasfoto terbaru menggunakan pakaian formal dan latar belakang berwarna merah</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".jpg, .jpeg, .png" data-max-size="500" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="item-cell">Ijazah Asli yang digunakan saat melamar CPNS 2024</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="item-cell">Transkrip Nilai Asli yang digunakan saat melamar CPNS 2024</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td class="item-cell">Surat Lamaran CASN yang diunggah pada saat mendaftar</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td class="item -cell">Surat Pernyataan 5 Poin yang telah ditandatangani dan dibubuhi dengan e-meterai/meterai konvensional</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td class="item-cell">Surat Keterangan Catatan Kepolisian (SKCK)</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td class="item-cell">Surat Keterangan Sehat Jasmani dan Rohani</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td class="item-cell">Surat Keterangan Tidak Mengkonsumsi/Menggunakan Narkotika, Psikotropika, Prekursor, dan Zat Adiktif Lainnya (SKBN)</td>
-                    <td><input type="date" class="date-input" style="width: 80 %; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td class="item-cell">Bukti pengalaman kerja yang telah dilegalisasi (jika memiliki masa kerja)</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td class="item-cell">Hasil cetak Daftar Riwayat Hidup (DRH) yang telah ditandatangani dan bermeterai</td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                    <td>
-                        <select class="status-dropdown" onchange="saveTableData()">
-                            <option value="belum diunggah">Belum diproses</option>
-                            <option value="sedang diproses">Sedang diproses</option>
-                            <option value="sudah diunggah">Sudah diunggah</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                    </td>
-                    <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="button-container">
-            <button id="add-row" onclick="addRow()">Tambah Baris</button>
-            <button id="print-button" onclick="printTable()">Cetak DRH</button>
-            <div>
-
-        <footer class="footer">
-           <p>&copy; 2024 Checklist Dokumen DRH (Nicholas). All Rights Reserved.</p>
-        </footer>
-
-        <div class="button-container">
-            <button type="submit">Ajukan Timeline</button>
-            <div>
-        </div>
-    </form>
-
-        <div class="section" style="text-align: center;">
-        <h2 id="timelineTitle">Timeline Dokumen DRH Peserta</h2>
-        <form id="ganttForm" style="display: inline-block; text-align: left;">
-            <label for="id">Masukkan ID Anda:</label>
-            <input type="number" name="id" id="id" required>
-            <input type="submit" value="Tampilkan" onclick="showTimeline();">
-        </form>
-
-        <div id="ganttChartContainer"></div>
-        <div id="message"></div> 
-    </div>
-
-    <script>
-
-        function hideNotification() {
-            const notification = document.getElementById('notification');
-            notification.style.display = 'none'; 
-        }
-
-        // Fungsi untuk mengajukan timeline
-        function submitForm() {
-            // Logika pengajuan form
-            localStorage.setItem('submissionStatus', 'submitted');
-            hideNotification(); 
-            return false; 
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('submit-button').disabled = true; 
-            hideNotification(); 
-        });
-   
-   function showTimeline() {
-            
-            var idPeserta = document.getElementById('id').value;
-            var namaLengkap = document.getElementById('nama').value;
-
-            
-            document.getElementById('timelineTitle').innerText = 'Timeline Dokumen DRH ' + namaLengkap;
-
-            return false; 
-        }
-
-        function submitForm() {
-    
-    localStorage.setItem('submissionStatus', 'submitted');
-    
-    
-    window.location.href = window.location.pathname + '?message=success';
-    return false; 
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    
-    if (urlParams.has('message') && urlParams.get('message') === 'success') {
-        document.getElementById('notification').style.display = 'block'; 
-        setTimeout(() => {
-            document.getElementById('notification').style.display = 'none'; 
-            
-            urlParams.delete('message'); 
-            window.history.replaceState({}, document.title, window.location.pathname); 
-        }, 5000);
-    }
-
-    if (localStorage.getItem('submissionStatus') === 'submitted') {
-        document.getElementById('notification').style.display = 'block'; 
-        setTimeout(() => {
-            document.getElementById('notification').style.display = 'none'; 
-            localStorage.removeItem('submissionStatus'); 
-        }, 5000);
-    }
-});
-
-        function generateRandomLetters(length) {
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-    let result = '';
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * letters.length); 
-        result += letters[randomIndex]; 
-    }
-    return result; 
-}
-
-    document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('ganttForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        showTimeline();
-        
-        var idPeserta = document.getElementById('id').value;
-        var randomLetters = generateRandomLetters(3);
-        var gambarGantt = "gant_chart_id=" + idPeserta + ".png"; 
-
-        console.log("ID Peserta:", idPeserta);
-        console.log("Gambar Gantt URL:", gambarGantt);
-
-        var container = document.getElementById('ganttChartContainer');
-        container.innerHTML = ''; 
-
-        var img = new Image();
-        img.src = gambarGantt;
-        img.alt = "Gantt Chart";
-
-        img.onload = function() {
-            container.appendChild(img); 
-            document.getElementById('message').innerHTML = 'ID Peserta: ' + idPeserta + ' ' + randomLetters; 
-            localStorage.setItem('gambarGantt', gambarGantt);
-        };
-
-        img.onerror = function() {
-            document.getElementById('message').innerHTML = 'Timeline Anda tidak ditemukan untuk ID: ' + idPeserta + '. Masukkan ID sesuai yang diberikan oleh Administrator. Jika lupa ID Anda, silakan hubungi Administrator!'; 
-        };
-    });
-});
-
-
-function loadChartImage() {
-    const gambarGantt = localStorage.getItem('gambarGantt');
-    if (gambarGantt) {
-        const imgElement = document.createElement('img');
-        imgElement.src = gambarGantt;
-        imgElement.alt = "Gantt Chart";
-
-        const container = document.getElementById('ganttChartContainer');
-        container.innerHTML = ''; 
-        container.appendChild(imgElement); 
-    }
-}
-
-       function loadInstansi() {
-    fetch('instansi.json')
-        .then(response => response.json())
-        .then(data => {
-            const instansiList = document.getElementById('instansi-list');
-            data.forEach(instansi => {
-                const option = document.createElement('option');
-                option.value = instansi.nama; 
-                instansiList.appendChild(option); 
-            });
-        })
-        .catch(error => console.error('Error loading instansi:', error));
-}
-
-function showNotification() {
-            const notification = document.getElementById('notification');
-            notification.style.display = 'block'; 
-            setTimeout(() => {
-                notification.style.display = 'none'; 
-            }, 5000);
-        }
-
-    function submitForm() {
-    const tableData = [];
-    const rows = document.querySelectorAll('#document-table tbody tr');
-
-    rows.forEach(row => {
-        const cells = row.getElementsByTagName('td');
-        const rowData = {
-            item: cells[1].getElementsByTagName('textarea')[0].value,
-            startDate: cells[2].getElementsByTagName('input')[0].value,
-            endDate: cells[3].getElementsByTagName('input')[0].value,
-            status: cells[4].getElementsByTagName('select')[0].value,
-            fileLink: cells[5].getElementsByTagName('a')[0].href,
-            uploaded: cells[6].getElementsByTagName('input')[0].checked
-        };
-        tableData.push(rowData);
-    });
-
-    
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'documentItems';
-    input.value = JSON.stringify(tableData);
-    document.getElementById('peserta-form').appendChild(input);
-
-    showNotification(); 
-
-    return true; 
-}
-
-         function loadJabatan() {
-    fetch('jabatan.json')
-        .then(response => response.json())
-        .then(data => {
-            const jabatanList = document.getElementById('jabatan-list');
-            jabatanList.innerHTML = ''; 
-            data.jabatan_fungsional.forEach(jabatan => {
-                const option = document.createElement('option');
-                option.value = jabatan; 
-                jabatanList.appendChild(option); 
-            });
-        })
-        .catch(error => console.error('Error loading jabatan:', error));
-}
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            loadInstansi();
-            loadJabatan();
-            loadFormData();
-            loadTableData();
-        });
-
-        function filterTable() {
-    const startDate = document.getElementById('start-date').value;
-    const endDate = document.getElementById('end-date').value;
-    const statusFilter = document.getElementById('status-filter').value;
-
-    const table = document.getElementById('document-table');
-    const rows = table.getElementsByTagName('tr');
-
-    for (let i = 1; i < rows.length; i++) { 
-        const cells = rows[i].getElementsByTagName('td');
-        const dateCellStart = cells[2].getElementsByTagName('input')[0].value;
-        const dateCellEnd = cells[3].getElementsByTagName('input')[0].value;
-        const statusCell = cells[4].getElementsByTagName('select')[0].value;
-
-        let showRow = true;
-
-        
-        if (startDate && dateCellStart < startDate) {
-            showRow = false;
-        }
-        if (endDate && dateCellEnd > endDate) {
-            showRow = false;
-        }
-
-        
-        if (statusFilter && statusCell !== statusFilter) {
-            showRow = false;
-        }
-
-        rows[i].style.display = showRow ? '' : 'none'; 
-    }
-}
-
-        function highlightRow(checkbox) {
-            const row = checkbox.closest('tr');
-            if (checkbox.checked) {
-                row.classList.add('highlight');
- } else {
-                row.classList.remove('highlight');
-            }
-        }
-
-        function uploadFile(input) {
-    const file = input.files[0];
-    const link = input.nextElementSibling; 
-    const maxSizeKB = parseInt(input.getAttribute('data-max-size')); 
-    const maxSizeBytes = maxSizeKB * 1024; 
-
-    if (file) {
-        if (file.size > maxSizeBytes) {
-            alert(`Ukuran file melebihi batas maksimum yang diizinkan (${maxSizeKB} KB).`);
-            input.value = ''; 
-            link.style.display = 'none'; 
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('file', file);
-
-        fetch('upload.php', { 
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const fileURL = data.fileUrl; 
-                link.href = fileURL; 
-                link.textContent = file.name; 
-                link.style.display = 'inline'; 
-
-                
-                const row = input.closest('tr');
-                const rowIndex = Array.from(row.parentNode.children).indexOf(row);
-                const tableData = JSON.parse(localStorage.getItem('tableData')) || [];
-                if (!tableData[rowIndex]) {
-                    tableData[rowIndex] = {};
-                }
-                tableData[rowIndex].fileLink = fileURL; 
-                localStorage.setItem('tableData', JSON.stringify(tableData));
-
-                console.log(`File ${file.name} berhasil diunggah.`);
-            } else {
-                console.error('Gagal mengunggah file:', data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    } else {
-        link.style.display = 'none'; 
-    }
-}
-
-        function loadFormData() {
-            const savedData = localStorage.getItem('formData');
-            if (savedData) {
-                const formData = JSON.parse(savedData);
-                document.getElementById('nama').value = formData.nama;
-                document.getElementById('instansi').value = formData.instansi;
-                document.getElementById('jabatan').value = formData.jabatan;
-                document.getElementById('lokasi').value = formData.lokasi;
-                document.getElementById('jenis').value = formData.jenis;
-                document.getElementById('kode').value = formData.kode;
-            }
-        }
-
-        const MAX_ROWS = 10;
-    const DEFAULT_ROWS = [
-        { item: "Item 1", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 2", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 3", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 4", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 5", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 6", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 7", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 8", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 9", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-        { item: "Item 10", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false }
-    ];
-
-    function addRow() {
-        const tbody = document.querySelector('#document-table tbody');
-        const rowCount = tbody.rows.length; 
-        const newRow = document.createElement('tr');
-
-        newRow.innerHTML = `
-            <td>${rowCount + 1}</td>
-            <td class="item-cell"><textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()"></textarea></td>
-            <td><input type="date" class="date-input" onchange="saveTableData()"></td>
-            <td><input type="date" class="date-input" onchange="saveTableData()"></td>
-            <td>
-                <select class="status-dropdown" onchange="saveTableData()">
+    <form id="peserta-form" method="POST" action="ajukanTimeline.php" onsubmit="return submitForm();">  
+        <div class="form-section">
+            <div class="filter-section">
+                <label for="status-filter"><strong>Status:</strong></label>
+                <select id="status-filter" onchange="filterTable()">
+                    <option value="">Semua</option>
                     <option value="belum diunggah">Belum diproses</option>
                     <option value="sedang diproses">Sedang diproses</option>
                     <option value="sudah diunggah">Sudah diunggah</option>
                 </select>
-            </td>
-            <td>
-                <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-            </td>
-            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-            <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-        `;
+                
+                <label for="start-date"><strong>Start Date:</strong></label>
+                <input type="date" id="start-date" onchange="filterTable()">
+                
+                <label for="end-date"><strong>End Date:</strong></label>
+                <input type="date" id="end-date" onchange="filterTable()">
+            </div>
 
-        tbody.appendChild(newRow);
-        saveTableData(); 
-    }
+            <table id="document-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Document Item</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Document Link</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td class="item-cell">Pasfoto terbaru menggunakan pakaian formal dan latar belakang berwarna merah</td>
+                        <td><input type="date" class="date-input" onchange="saveTableData()"></td>
+                        <td><input type="date" class="date-input" onchange="saveTableData()"></td>
+                        <td>
+                            <select class="status-dropdown" onchange="saveTableData()">
+                                <option value="belum diunggah">Belum diproses</option>
+                                <option value="sedang diproses">Sedang diproses</option>
+                                <option value="sudah diunggah">Sudah diunggah</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="file" class="upload-input" accept=".jpg, .jpeg, .png" onchange="uploadFile(this, 1);">
+                            <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        </td>
+                        <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="item-cell">Ijazah Asli yang digunakan saat melamar CPNS 2024</td>
+                        <td><input type="date" class="date-input" onchange="saveTableData()"></td>
+                        <td><input type="date" class="date-input" onchange="saveTableData()"></td>
+                        <td>
+                            <select class="status-dropdown" onchange="saveTableData()">
+                                <option value="belum diunggah">Belum diproses</option>
+                                <option value="sedang diproses">Sedang diproses</option>
+                                <option value="sudah diunggah">Sudah diunggah</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="file" class="upload-input" accept=".pdf" onchange="uploadFile(this, 2);">
+                            <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        </td>
+                        <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
+                    </tr>
+                </tbody>
+            </table>
 
-    function deleteRow(button) {
-        const row = button.closest('tr'); 
-        const rowIndex = Array.from(row.parentNode.children).indexOf(row); 
+            <div class="button-container">
+                <button type="button" class="btn btn-success" onclick="addRow()">Tambah Baris</button>
+                <button type="submit" class="btn btn-primary" id="submit-button" disabled>Ajukan Timeline</button>
+                <button type="button" class="btn btn-info" onclick="printTable()">Cetak</button>
+            </div>
+        </div>
+    </form>
 
-        if (rowIndex < MAX_ROWS) {
-            alert("Baris ini tidak dapat dihapus.");
-            return; 
-        }
-
-        row.parentNode.removeChild(row); 
-        saveTableData(); 
-        updateDeleteButtons(); 
-    }
-
-    function updateDeleteButtons() {
-        const tbody = document.querySelector('#document-table tbody');
-        const rows = tbody.rows;
-
-        for (let i = 0; i < rows.length; i++) {
-            const deleteButton = rows[i].querySelector('button');
-            if (i < MAX_ROWS) {
-                deleteButton.disabled = true; 
+    <script>
+        function uploadFile(input, row) {
+            const file = input.files[0];
+            const link = input.nextElementSibling;
+            if (file) {
+                link.style.display = 'block';
+                link.href = URL.createObjectURL(file);
+                link.textContent = 'Lihat File';
             } else {
-                deleteButton.disabled = false; 
+                link.style.display = 'none';
             }
         }
-    }
 
-        function highlightRow(checkbox) {
-            const row = checkbox.closest('tr');
-            if (checkbox.checked) {
-                row.classList.add('highlight');
-            } else {
-                row.classList.remove('highlight');
-            }
-        }
+        function addRow() {
+            const tableBody = document.querySelector('#document-table tbody');
+            const rowCount = tableBody.rows.length + 1; // Get the current row count
+            const newRow = document.createElement('tr');
 
-       function saveTableData() {
-    const tableData = [];
-    const rows = document.querySelectorAll('#document-table tbody tr');
-
-    rows.forEach(row => {
-        const cells = row.getElementsByTagName('td');
-        const rowData = {
-            item: cells[1].getElementsByTagName('textarea')[0].value,
-            startDate: cells[2].getElementsByTagName('input')[0].value,
-            endDate: cells[3].getElementsByTagName('input')[0].value,
-            status: cells[4].getElementsByTagName('select')[0].value,
-            fileLink: cells[5].getElementsByTagName('a')[0].href, 
-            uploaded: cells[6].getElementsByTagName('input')[0].checked 
-        };
-        tableData.push(rowData);
-    });
-
-    console.log('Data yang akan disimpan:', JSON.stringify(tableData));
-
-    localStorage.setItem('tableData', JSON.stringify(tableData)); 
-}
-
-    function loadTableData() {
-    const savedData = localStorage.getItem('tableData');
-    console.log('Data yang dimuat dari local storage:', savedData);
-    const tbody = document.querySelector('#document-table tbody');
-    tbody.innerHTML = ''; 
-
-    if (savedData) {
-        const tableData = JSON.parse(savedData);
-        tableData.forEach((data, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${index + 1}</td>
-                <td class="item-cell"><textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()">${data.item}</textarea></td>
-                <td><input type="date" class="date-input" value="${data.startDate}" onchange="saveTableData()"></td>
-                <td><input type="date" class="date-input" value="${data.endDate}" onchange="saveTableData()"></td>
-                <td>
-                    <select class="status-dropdown" onchange="saveTableData()">
-                        <option value="belum diunggah" ${data.status === 'belum diunggah' ? 'selected' : ''}>Belum diproses</option>
-                        <option value="sedang diproses" ${data.status === 'sedang diproses' ? 'selected' : ''}>Sedang diproses</option>
-                        <option value="sudah diunggah" ${data.status === 'sudah diunggah' ? 'selected' : ''}>Sudah diunggah</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                    <a href="${data.fileLink}" class="file-link" style="display:${data.fileLink ? 'inline' : 'none'};" target="_blank">Lihat File</a>
-                </td>
-                <td class="checkbox-cell"><input type="checkbox" ${data.uploaded ? 'checked' : ''} onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-            `;
-            tbody.appendChild(row);
-        });
-    } else {
-        
-        DEFAULT_ROWS.forEach((data, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${index + 1}</td>
-                <td class="item-cell"><textarea class="item-input" placeholder="Ketik kan item dokumen" onchange="saveTableData()">${data.item}</textarea></td>
-                <td><input type="date" class="date-input" value="${data.startDate}" onchange="saveTableData()"></td>
-                <td><input type="date" class="date-input" value="${data.endDate}" onchange="saveTableData()"></td>
+            newRow.innerHTML = `
+                <td>${rowCount}</td>
+                <td class="item-cell"><input type="text" placeholder="Ketikkan item dokumen" class="item-input"></td>
+                <td><input type="date" class="date-input" onchange="saveTableData()"></td>
+                <td><input type="date" class="date-input" onchange="saveTableData()"></td>
                 <td>
                     <select class="status-dropdown" onchange="saveTableData()">
                         <option value="belum diunggah">Belum diproses</option>
@@ -935,35 +179,58 @@ function showNotification() {
                     </select>
                 </td>
                 <td>
-                    <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
+                    <input type="file" class="upload-input" accept=".jpg, .jpeg, .png, .pdf" onchange="uploadFile(this, ${rowCount});">
                     <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                 </td>
-                <td class="checkbox-cell"><input type="checkbox" ${data.uploaded ? 'checked' : ''} onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                <td><button class="delete-button" onclick="deleteRow(this)" disabled>Hapus</button></td>
+                <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
             `;
-            tbody.appendChild(row);
-        });
-    }
-    updateDeleteButtons(); 
-    updateRowNumbers();
-}
 
-function updateRowNumbers() {
-    const rows = document.querySelectorAll('#document-table tbody tr');
-    rows.forEach((row, index) => {
-        row.cells[0].textContent = index + 1; 
-    });
-}   
-
-function printTable() {
-            window.print(); 
+            tableBody.appendChild(newRow);
         }
 
+        function deleteRow(button) {
+            const row = button.closest('tr');
+            row.parentNode.removeChild(row);
+            updateRowNumbers(); // Update row numbers after deletion
+        }
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadChartImage();
-});
+        function updateRowNumbers() {
+            const rows = document.querySelectorAll('#document-table tbody tr');
+            rows.forEach((row, index) => {
+                row.cells[0].textContent = index + 1; // Update the row number
+            });
+        }
+
+        function printTable() {
+            window.print(); // Print the current page
+        }
+
+        function filterTable() {
+            const statusFilter = document.getElementById('status-filter').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+
+            const rows = document.querySelectorAll('#document-table tbody tr');
+            rows.forEach(row => {
+                const status = row.querySelector('.status-dropdown').value;
+                const start = row.querySelector('td:nth-child(3) input').value;
+                const end = row.querySelector('td:nth-child(4) input').value;
+
+                let showRow = true;
+
+                if (statusFilter && status !== statusFilter) {
+                    showRow = false;
+                }
+                if (startDate && start < startDate) {
+                    showRow = false;
+                }
+                if (endDate && end > endDate) {
+                    showRow = false;
+                }
+
+                row.style.display = showRow ? '' : 'none';
+            });
+        }
     </script>
-
 </body>
 </html>
