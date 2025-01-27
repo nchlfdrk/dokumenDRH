@@ -475,7 +475,9 @@
             return false; 
         }
 
-        document.addEventListener('DOMContentLoaded', loadFormData);
+         document.addEventListener('DOMContentLoaded', function() {
+            loadFormData(); 
+        });
 
         function showNotification() {
             const notification = document.getElementById('notification');
