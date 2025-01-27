@@ -442,6 +442,41 @@
            loadJabatan();
         });
 
+        function saveFormData() {
+            const formData = {
+                nama: document.getElementById('nama').value,
+                instansi: document.getElementById('instansi').value,
+                jabatan: document.getElementById('jabatan').value,
+                lokasi: document.getElementById('lokasi').value,
+                kode: document.getElementById('kode').value,
+                jenis: document.getElementById('jenis').value
+            };
+            localStorage.setItem('formData', JSON.stringify(formData));
+            console.log('Data yang disimpan:', formData); 
+        }
+
+        function loadFormData() {
+            const savedData = localStorage.getItem('formData');
+            if (savedData) {
+                const formData = JSON.parse(savedData);
+                document.getElementById('nama').value = formData.nama || '';
+                document.getElementById('instansi').value = formData.instansi || '';
+                document.getElementById('jabatan').value = formData.jabatan || '';
+                document.getElementById('lokasi').value = formData.lokasi || '';
+                document.getElementById('kode').value = formData.kode || '';
+                document.getElementById('jenis').value = formData.jenis || '';
+                console.log('Data yang dimuat:', formData); 
+            }
+        }
+
+        function submitForm() {
+            saveFormData(); 
+            alert('Data berhasil disimpan!'); 
+            return false; 
+        }
+
+        document.addEventListener('DOMContentLoaded', loadFormData);
+
         function showNotification() {
             const notification = document.getElementById('notification');
             notification.style.display = 'block'; 
