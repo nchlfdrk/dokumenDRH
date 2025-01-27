@@ -390,7 +390,7 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="file" class="upload-input" accept =".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
+                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
@@ -530,7 +530,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams (window.location.search);
+            const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('message') && urlParams.get('message') === 'success') {
                 document.getElementById('notification').style.display = 'block'; 
                 setTimeout(() => {
@@ -625,7 +625,7 @@
             rows.forEach(row => {
                 const cells = row.getElementsByTagName('td');
                 const rowData = {
-                    item: cells[1].getElementsByTagName('textarea')[0].value,
+                    item: cells[1].getElementsByTagName('textarea')[0] ? cells[1].getElementsByTagName('textarea')[0].value : cells[1].innerText,
                     startDate: cells[2].getElementsByTagName('input')[0].value,
                     endDate: cells[3].getElementsByTagName('input')[0].value,
                     status: cells[4].getElementsByTagName('select')[0].value,
@@ -663,6 +663,7 @@
                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>`;
             cell7.innerHTML = `<input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();">`;
             cell8.innerHTML = `<button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button>`;
+            saveTableData(); // Call to save data after adding a new row
         }
 
         function deleteRow(button) {
