@@ -282,196 +282,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Pasfoto terbaru menggunakan pakaian formal dan latar belakang berwarna merah</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".jpg, .jpeg, .png" data-max-size="500" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>2 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Ijazah Asli yang digunakan saat melamar CPNS 2024</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>3 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Transkrip Nilai Asli yang digunakan saat melamar CPNS 2024</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>4 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Surat Lamaran CASN yang diunggah pada saat mendaftar</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>5 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Surat Pernyataan 5 Poin yang telah ditandatangani dan dibubuhi dengan e-meterai/meterai konvensional</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>6 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Surat Keterangan Catatan Kepolisian (SKCK)</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>7 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Surat Keterangan Sehat Jasmani dan Rohani</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>8 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Surat Keterangan Tidak Mengkonsumsi/Menggunakan Narkotika, Psikotropika, Prekursor, dan Zat Adiktif Lainnya (SKBN)</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>9 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Bukti pengalaman kerja yang telah dilegalisasi (jika memiliki masa kerja)</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
-                        <tr>
-                            <td>10 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                            <td class="item-cell">Hasil cetak Daftar Riwayat Hidup (DRH) yang telah ditandatangani dan bermeterai</td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td><input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                            <td>
-                                <select class="status-dropdown" onchange="saveTableData()">
-                                    <option value="belum diunggah">Belum diproses</option>
-                                    <option value="sedang diproses">Sedang diproses</option>
-                                    <option value="sudah diunggah">Sudah diunggah</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                            </td>
-                            <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                        </tr>
+                        <!-- Baris akan ditambahkan di sini -->
                     </tbody>
                 </table>
             </div>
@@ -604,7 +415,8 @@
                 .then(data => {
                     const instansiList = document.getElementById('instansi-list');
                     data.forEach(instansi => {
-                        const option = document.createElement('option option.value = instansi.nama; 
+                        const option = document.createElement('option');
+                        option.value = instansi.nama; 
                         instansiList.appendChild(option); 
                     });
                 })
@@ -636,21 +448,25 @@
                 tableData.push(rowData);
             });
 
+            console.log('Data yang disimpan:', JSON.stringify(tableData)); // Log data yang disimpan
             localStorage.setItem('tableData', JSON.stringify(tableData));
         }
 
         function loadTableData() {
-            const tableData = JSON.parse(localStorage.getItem('tableData'));
-            if (tableData) {
-                const tableBody = document.querySelector('#document-table tbody');
-                tableBody.innerHTML = ''; // Clear existing rows
+            const savedData = localStorage.getItem('tableData');
+            console.log('Data yang dimuat dari local storage:', savedData); // Log data yang dimuat
+            const tbody = document.querySelector('#document-table tbody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            if (savedData) {
+                const tableData = JSON.parse(savedData);
                 tableData.forEach((data, index) => {
-                    const newRow = tableBody.insertRow();
+                    const newRow = tbody.insertRow();
                     newRow.innerHTML = `
                         <td>${index + 1} <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
-                        <td class="item-cell">${data.item}</td>
-                        <td><input type="date" class="date-input" value="${data.startDate}" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
-                        <td><input type="date" class="date-input" value="${data.endDate}" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;"></td>
+                        <td class="item-cell"><textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()">${data.item}</textarea></td>
+                        <td><input type="date" class="date-input" value="${data.startDate}" onchange="saveTableData()"></td>
+                        <td><input type="date" class="date-input" value="${data.endDate}" onchange="saveTableData()"></td>
                         <td>
                             <select class="status-dropdown" onchange="saveTableData()">
                                 <option value="belum diunggah" ${data.status === 'belum diunggah' ? 'selected' : ''}>Belum diproses</option>
@@ -662,7 +478,7 @@
                             <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
                             <a href="${data.fileLink}" class="file-link" style="display:${data.fileLink ? 'block' : 'none'};" target="_blank">Lihat File</a>
                         </td>
-                        <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" ${data.uploaded ? 'checked' : ''} onchange="saveTableData();"></td>
+                        <td class="checkbox-cell"><input type="checkbox" ${data.uploaded ? 'checked' : ''} onclick="highlightRow(this)" onchange="saveTableData();"></td>
                         <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                     `;
                 });
@@ -682,9 +498,9 @@
             const cell8 = newRow.insertCell(7);
 
             cell1.innerHTML = `${table.rows.length} <span class="toggle-button" onclick="toggleDetails(this)">+</span>`;
-            cell2.innerHTML = `<input type="text" class="item-input" placeholder="Ketikkan item dokumen">`;
-            cell3.innerHTML = `<input type ="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">`;
-            cell4.innerHTML = `<input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">`;
+            cell2.innerHTML = `<textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()"></textarea>`;
+            cell3.innerHTML = `<input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;" onchange="saveTableData()">`;
+            cell4.innerHTML = `<input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;" onchange="saveTableData()">`;
             cell5.innerHTML = `<select class="status-dropdown" onchange="saveTableData()">
                                 <option value="belum diunggah">Belum diproses</option>
                                 <option value="sedang diproses">Sedang diproses</option>
