@@ -7,7 +7,7 @@
     <style>
         body, table, th, td, input, select, textarea {
             font-family: Arial, sans-serif; 
-            font-size: 15.5px; 
+            font-size: 15px; 
         }
         body {
             font-family: Arial, sans-serif;
@@ -487,25 +487,7 @@
         <div id="message"></div> 
     </div>
 
-    <script>
-
-        function hideNotification() {
-            const notification = document.getElementById('notification');
-            notification.style.display = 'none'; 
-        }
-
-        // Fungsi untuk mengajukan timeline
-        function submitForm() {
-            // Logika pengajuan form
-            localStorage.setItem('submissionStatus', 'submitted');
-            hideNotification(); 
-            return false; 
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('submit-button').disabled = true; 
-            hideNotification(); 
-        });
+<script>
    
    function showTimeline() {
             
