@@ -204,7 +204,7 @@
         Permintaan timeline Anda berhasil dikirimkan dan akan segera diproses oleh Administrator dalam 2 x 24 jam!
     </div>
 
-    <form id="peserta-form">  
+    <form id="peserta-form" onsubmit="return submitForm();">  
         <div class="form-section">
             <div class="form-column">
                 <label for="nama">Nama Peserta:</label>
@@ -467,7 +467,7 @@
             </div>
 
             <div class="button-container">
-                <button id="add-row" onclick="addRow()">Tambah Baris</button>
+                <button type="button" id="add-row" onclick="addRow()">Tambah Baris</button>
                 <button id="print-button" onclick="printTable()" disabled>Cetak DRH</button>
             </div>
         </div>
@@ -608,9 +608,10 @@
             }, 5000);
         }
 
-        function submitForm() {
+        function saveTableData() {
             const tableData = [];
             const rows = document.querySelectorAll('#document-table tbody tr');
+
             rows.forEach(row => {
                 const cells = row.getElementsByTagName('td');
                 const rowData = {
@@ -623,65 +624,41 @@
                 };
                 tableData.push(rowData);
             });
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'documentItems';
-            input.value = JSON.stringify(tableData);
-            document.getElementById('peserta-form').appendChild(input);
-            showNotification(); 
-            return true }
 
-        function loadJabatan() {
-            fetch('jabatan.json')
-                .then(response => response.json())
-                .then(data => {
-                    const jabatanList = document.getElementById('jabatan-list');
-                    jabatanList.innerHTML = ''; 
-                    data.jabatan_fungsional.forEach(jabatan => {
-                        const option = document.createElement('option');
-                        option.value = jabatan; 
-                        jabatanList.appendChild(option); 
-                    });
-                })
-                .catch(error => console.error('Error loading jabatan:', error));
+            localStorage.setItem('tableData', JSON.stringify(tableData));
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            loadInstansi();
-            loadJabatan();
-            loadFormData();
-            loadTableData();
-        });
+        function addRow() {
+            const table = document.getElementById('document-table').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+            const cell6 = newRow.insertCell(5);
+            const cell7 = newRow.insertCell(6);
+            const cell8 = newRow.insertCell(7);
 
-        function filterTable() {
-            const startDate = document.getElementById('start-date').value;
-            const endDate = document.getElementById('end-date').value;
-            const statusFilter = document.getElementById('status-filter').value;
+            cell1.innerHTML = `${table.rows.length} <span class="toggle-button" onclick="toggleDetails(this)">+</span>`;
+            cell2.innerHTML = `<input type="text" class="item-input" placeholder="Ketikkan item dokumen">`;
+            cell3.innerHTML = `<input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">`;
+            cell4.innerHTML = `<input type="date" class="date-input" style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">`;
+            cell5.innerHTML = `<select class="status-dropdown" onchange="saveTableData()">
+                                <option value="belum diunggah">Belum diproses</option>
+                                <option value="sedang diproses">Sedang diproses</option>
+                                <option value="sudah diunggah">Sudah diunggah</option>
+                              </select>`;
+            cell6.innerHTML = `<input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
+                               <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>`;
+            cell7.innerHTML = `<input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();">`;
+            cell8.innerHTML = `<button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button>`;
+        }
 
-            const table = document.getElementById('document-table');
-            const rows = table.getElementsByTagName('tr');
-
-            for (let i = 1; i < rows.length; i++) { 
-                const cells = rows[i].getElementsByTagName('td');
-                const dateCellStart = cells[2].getElementsByTagName('input')[0].value;
-                const dateCellEnd = cells[3].getElementsByTagName('input')[0].value;
-                const statusCell = cells[4].getElementsByTagName('select')[0].value;
-
-                let showRow = true;
-
-                if (startDate && dateCellStart < startDate) {
-                    showRow = false;
-                }
-                if (endDate && dateCellEnd > endDate) {
-                    showRow = false;
-                }
-
-                if (statusFilter && statusCell !== statusFilter) {
-                    showRow = false;
-                }
-
-                rows[i].style.display = showRow ? '' : 'none'; 
-            }
+        function deleteRow(button) {
+            const row = button.closest('tr');
+            row.parentNode.removeChild(row);
+            saveTableData();
         }
 
         function highlightRow(checkbox) {
@@ -695,244 +672,43 @@
 
         function uploadFile(input) {
             const file = input.files[0];
-            const link = input.nextElementSibling; 
-            const maxSizeKB = parseInt(input.getAttribute('data-max-size')); 
-            const maxSizeBytes = maxSizeKB * 1024; 
-
             if (file) {
-                if (file.size > maxSizeBytes) {
-                    alert(`Ukuran file melebihi batas maksimum yang diizinkan (${maxSizeKB} KB).`);
-                    input.value = ''; 
-                    link.style.display = 'none'; 
-                    return;
-                }
-
-                const formData = new FormData();
-                formData.append('file', file);
-
-                fetch('upload.php', { 
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const fileURL = data.fileUrl; 
-                        link.href = fileURL; 
-                        link.textContent = file.name; 
-                        link.style.display = 'inline'; 
-
-                        const row = input.closest('tr');
-                        const rowIndex = Array.from(row.parentNode.children).indexOf(row);
-                        const tableData = JSON.parse(localStorage.getItem('tableData')) || [];
-                        if (!tableData[rowIndex]) {
-                            tableData[rowIndex] = {};
-                        }
-                        tableData[rowIndex].fileLink = fileURL; 
-                        localStorage.setItem('tableData', JSON.stringify(tableData));
-
-                        console.log(`File ${file.name} berhasil diunggah.`);
-                    } else {
-                        console.error('Gagal mengunggah file:', data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            } else {
-                link.style.display = 'none'; 
+                const fileLink = input.nextElementSibling;
+                fileLink.style.display = 'block';
+                fileLink.href = URL.createObjectURL(file);
+                fileLink.innerText = 'Lihat File';
             }
         }
 
-        function loadFormData() {
-            const savedData = localStorage.getItem('formData');
-            if (savedData) {
-                const formData = JSON.parse(savedData);
-                document.getElementById('nama').value = formData.nama;
-                document.getElementById('instansi').value = formData.instansi;
-                document.getElementById('jabatan').value = formData.jabatan;
-                document.getElementById('lokasi').value = formData.lokasi;
-                document.getElementById('jenis').value = formData.jenis;
-                document.getElementById('kode').value = formData.kode;
-            }
+        function printTable() {
+            window.print();
         }
 
-        const MAX_ROWS = 10;
-        const DEFAULT_ROWS = [
-            { item: "Item 1", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 2", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 3", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 4", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 5", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 6", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 7", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 8", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 9", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false },
-            { item: "Item 10", startDate: "", endDate: "", status: "belum diunggah", fileLink: "", uploaded: false }
-        ];
-
-        function addRow() {
-            const tbody = document.querySelector('#document-table tbody');
-            const rowCount = tbody.rows.length; 
-            const newRow = document.createElement('tr');
-
-            newRow.innerHTML = `
-                <td>${rowCount + 1}</td>
-                <td class="item-cell"><textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()"></textarea></td>
-                <td><input type="date" class="date-input" onchange="saveTableData()"></td>
-                <td><input type="date" class="date-input" onchange="saveTableData()"></td>
-                <td>
-                    <select class="status-dropdown" onchange="saveTableData()">
-                        <option value="belum diunggah">Belum diproses</option>
-                        <option value="sedang diproses">Sedang diproses</option>
-                        <option value="sudah diunggah">Sudah diunggah</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                    <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                </td>
-                <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-            `;
-
-            tbody.appendChild(newRow);
-            saveTableData(); 
-        }
-
-        function deleteRow(button) {
-            const row = button.closest('tr'); 
-            const rowIndex = Array.from(row.parentNode.children).indexOf(row); 
-
-            if (rowIndex < MAX_ROWS) {
-                alert("Baris ini tidak dapat dihapus.");
-                return; 
-            }
-
-            row.parentNode.removeChild(row); 
-            saveTableData(); 
-            updateDeleteButtons(); 
-        }
-
-        function updateDeleteButtons() {
-            const tbody = document.querySelector('#document-table tbody');
-            const rows = tbody.rows;
-
-            for (let i = 0; i < rows.length; i++) {
-                const deleteButton = rows[i].querySelector('button');
-                if (i < MAX_ROWS) {
-                    deleteButton.disabled = false; 
-                } else {
-                    deleteButton.disabled = false; 
-                }
-            }
-        }
-
-        function highlightRow(checkbox) {
-            const row = checkbox.closest('tr');
-            if (checkbox.checked) {
-                row.classList.add('highlight');
-            } else {
-                row.classList.remove('highlight');
-            }
-        }
-
-        function saveTableData() {
-            const tableData = [];
+        function filterTable() {
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const statusFilter = document.getElementById('status-filter').value;
             const rows = document.querySelectorAll('#document-table tbody tr');
 
             rows.forEach(row => {
                 const cells = row.getElementsByTagName('td');
-                const rowData = {
-                    item: cells[1].getElementsByTagName('textarea')[0].value,
-                    startDate: cells[2].getElementsByTagName('input')[0].value,
-                    endDate: cells[3].getElementsByTagName('input')[0].value,
-                    status: cells[4].getElementsByTagName('select')[0].value,
-                    fileLink: cells[5].getElementsByTagName('a')[0].href, 
-                    uploaded: cells[6].getElementsByTagName('input')[0].checked 
-                };
-                tableData.push(rowData);
+                const rowStartDate = cells[2].getElementsByTagName('input')[0].value;
+                const rowEndDate = cells[3].getElementsByTagName('input')[0].value;
+                const rowStatus = cells[4].getElementsByTagName('select')[0].value;
+
+                const isDateInRange = (!startDate || rowStartDate >= startDate) && (!endDate || rowEndDate <= endDate);
+                const isStatusMatch = !statusFilter || rowStatus === statusFilter;
+
+                if (isDateInRange && isStatusMatch) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
             });
-
-            console.log('Data yang akan disimpan:', JSON.stringify(tableData));
-            localStorage.setItem('tableData', JSON.stringify(tableData)); 
         }
 
-        function loadTableData() {
-            const savedData = localStorage.getItem('tableData');
-            console.log('Data yang dimuat dari local storage:', savedData);
-            const tbody = document.querySelector('#document-table tbody');
-            tbody.innerHTML = ''; 
-
-            if (savedData) {
-                const tableData = JSON.parse(savedData);
-                tableData.forEach((data, index) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td class="item-cell"><textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()">${data.item}</textarea></td>
-                        <td><input type="date" class="date-input" value="${data.startDate}" onchange="saveTableData()"></td>
-                        <td><input type="date" class="date-input" value="${data.endDate}" onchange="saveTableData()"></td>
-                        <td>
-                            <select class="status-dropdown" onchange="saveTableData()">
-                                <option value="belum diunggah" ${data.status === 'belum diunggah' ? 'selected' : ''}>Belum diproses</option>
-                                <option value="sedang diproses" ${data.status === 'sedang diproses' ? 'selected' : ''}>Sedang diproses</option>
-                                <option value="sudah diunggah" ${data.status === 'sudah diunggah' ? 'selected' : ''}>Sudah diunggah</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                            <a href="${data.fileLink}" class="file-link" style="display:${data.fileLink ? 'inline' : 'none'};" target="_blank">Lihat File</a>
-                        </td>
-                        <td class="checkbox-cell"><input type="checkbox" ${data.uploaded ? 'checked' : ''} onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                        <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
-                    `;
-                    tbody.appendChild(row);
-                });
-            } else {
-                DEFAULT_ROWS.forEach((data, index) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td class="item-cell"><textarea class="item-input" placeholder="Ketikkan item dokumen" onchange="saveTableData()">${data.item}</textarea></td>
-                        <td><input type="date" class="date-input" value="${data.startDate}" onchange="saveTableData()"></td>
-                        <td><input type="date" class="date-input" value="${data.endDate}" onchange="saveTableData()"></td>
-                        <td>
-                            <select class="status-dropdown" onchange="saveTableData()">
-                                <option value="belum diunggah">Belum diproses</option>
-                                <option value="sedang diproses">Sedang diproses</option>
-                                <option value="sudah diunggah">Sudah diunggah</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                            <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
-                        </td>
-                        <td class="checkbox-cell"><input type="checkbox" ${data.uploaded ? 'checked' : ''} onclick="highlightRow(this)" onchange="saveTableData();"></td>
-                        <td><button class="delete-button" onclick="deleteRow(this)" disabled>Hapus</button></td>
-                    `;
-                    tbody.appendChild(row);
-                });
-            }
-            updateDeleteButtons(); 
-            updateRowNumbers();
-        }
-
-        function updateRowNumbers() {
-            const rows = document.querySelectorAll('#document-table tbody tr');
-            rows.forEach((row, index) => {
-                row.cells[0].textContent = index + 1; 
-            });
-        }   
-
-        function printTable() {
-            window.print(); 
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            loadChartImage();
-        });
+        loadInstansi();
+        loadChartImage();
     </script>
-
 </body>
 </html>
