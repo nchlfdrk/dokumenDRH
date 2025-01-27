@@ -467,7 +467,7 @@
             </div>
 
             <div class="button-container">
-                <button id="add-row" onclick="addRow()" disabled>Tambah Baris</button>
+                <button id="add-row" onclick="addRow()">Tambah Baris</button>
                 <button id="print-button" onclick="printTable()" disabled>Cetak DRH</button>
             </div>
         </div>
@@ -821,7 +821,7 @@
             for (let i = 0; i < rows.length; i++) {
                 const deleteButton = rows[i].querySelector('button');
                 if (i < MAX_ROWS) {
-                    deleteButton.disabled = true; 
+                    deleteButton.disabled = false; 
                 } else {
                     deleteButton.disabled = false; 
                 }
