@@ -423,6 +423,25 @@
                 .catch(error => console.error('Error loading instansi:', error));
         }
 
+        function loadJabatan() {
+            fetch('jabatan.json')
+                .then(response => response.json())
+                .then(data => {
+                    const jabatanList = document.getElementById('jabatan-list');
+                    jabatanList.innerHTML = ''; // Clear existing options
+                    data.jabatan_fungsional.forEach(jabatan => {
+                       const option = document.createElement('option');
+                       option.value = jabatan; 
+                       jabatanList.appendChild(option); 
+                    });
+               })
+               .catch(error => console.error('Error loading jabatan:', error));
+         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+           loadJabatan();
+        });
+
         function showNotification() {
             const notification = document.getElementById('notification');
             notification.style.display = 'block'; 
