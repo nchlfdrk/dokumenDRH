@@ -299,6 +299,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>2 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -317,6 +318,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>3 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -335,6 +337,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>4 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -353,6 +356,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>5 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -371,6 +375,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>6 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -385,10 +390,11 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
+                                <input type="file" class="upload-input" accept =".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>7 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -407,6 +413,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>8 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -425,6 +432,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>9 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -443,6 +451,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                         <tr>
                             <td>10 <span class="toggle-button" onclick="toggleDetails(this)">+</span></td>
@@ -461,6 +470,7 @@
                                 <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
                             </td>
                             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
+                            <td><button type="button" class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -520,7 +530,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
+            const urlParams = new URLSearchParams (window.location.search);
             if (urlParams.has('message') && urlParams.get('message') === 'success') {
                 document.getElementById('notification').style.display = 'block'; 
                 setTimeout(() => {
