@@ -7,7 +7,7 @@
     <style>
         body, table, th, td, input, select, textarea {
             font-family: Arial, sans-serif; 
-            font-size: 15.5px; 
+            font-size: 15px; 
         }
         body {
             font-family: Arial, sans-serif;
@@ -309,7 +309,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -327,7 +327,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -345,7 +345,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -363,7 +363,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -381,7 +381,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -399,7 +399,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -417,7 +417,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -435,7 +435,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -453,7 +453,7 @@
                     </td>
                     <td>
                         <input type="file" class="upload-input" accept=".pdf" data-max-size="1000" onchange="uploadFile(this); saveTableData();">
-                        <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                        <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                     </td>
                     <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 </tr>
@@ -461,8 +461,8 @@
         </table>
 
         <div class="button-container">
-            <button id="add-row" onclick="addRow()">Tambah Baris</button>
-            <button id="print-button" onclick="printTable()">Cetak DRH</button>
+            <button id="add-row" onclick="addRow()" disabled>Tambah Baris</button>
+            <button id="print-button" onclick="printTable()" disabled>Cetak DRH</button>
             <div>
 
         <footer class="footer">
@@ -818,7 +818,7 @@ function showNotification() {
             </td>
             <td>
                 <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
             </td>
             <td class="checkbox-cell"><input type="checkbox" onclick="highlightRow(this)" onchange="saveTableData();"></td>
             <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
@@ -911,7 +911,7 @@ function showNotification() {
                 </td>
                 <td>
                     <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                    <a href="${data.fileLink}" class="file-link" style="display:${data.fileLink ? 'inline' : 'none'};" target="_blank">Lihat File</a>
+                    <a href="${data.fileLink}" class="file-link" style="display:${data.fileLink ? 'inline' : 'none'};" target="_blank" disabled>Lihat File</a>
                 </td>
                 <td class="checkbox-cell"><input type="checkbox" ${data.uploaded ? 'checked' : ''} onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 <td><button class="delete-button" onclick="deleteRow(this)">Hapus</button></td>
@@ -936,7 +936,7 @@ function showNotification() {
                 </td>
                 <td>
                     <input type="file" class="upload-input" accept=".pdf, .jpg, .jpeg, .png" data-max-size="3000" onchange="uploadFile(this); saveTableData();">
-                    <a href="#" class="file-link" style="display:none;" target="_blank">Lihat File</a>
+                    <a href="#" class="file-link" style="display:none;" target="_blank" disabled>Lihat File</a>
                 </td>
                 <td class="checkbox-cell"><input type="checkbox" ${data.uploaded ? 'checked' : ''} onclick="highlightRow(this)" onchange="saveTableData();"></td>
                 <td><button class="delete-button" onclick="deleteRow(this)" disabled>Hapus</button></td>
